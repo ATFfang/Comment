@@ -3,157 +3,33 @@
 <head>
 	<meta charset="utf-8">
 	<title>Gitment留言板</title>
-	<!-- 引入 Bootstrap 样式文件 -->
-	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
-	<!-- 引入 Font Awesome 图标库 -->
-	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 	<!-- 引入 Gitment 样式文件 -->
 	<link rel="stylesheet" href="https://unpkg.com/gitment/style/default.css">
-	<style>
-		body {
-			background-color: #f5f5f5;
-		}
-		header {
-			background-color: #ff6b6b;
-			color: #fff;
-			padding: 50px;
-			text-align: center;
-		}
-		h1 {
-			font-size: 4rem;
-			margin-top: 0;
-		}
-		main {
-			margin: 50px auto;
-			max-width: 800px;
-			padding: 0 15px;
-		}
-		.btn-github {
-			background-color: #24292e;
-			border-color: #24292e;
-			color: #fff;
-			font-weight: bold;
-		}
-		.btn-github:hover {
-			background-color: #1b1f23;
-			border-color: #1b1f23;
-			color: #fff;
-		}
-		.gitment-form {
-			margin-top: 50px;
-		}
-		.gitment-editor {
-			border: 1px solid #e5e5e5;
-			border-radius: 5px;
-			padding: 10px;
-		}
-		.gitment-editor:focus {
-			outline: none;
-			border-color: #ff6b6b;
-			box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
-		}
-		.gitment-submit {
-			background-color: #ff6b6b;
-			border-color: #ff6b6b;
-			color: #fff;
-			font-weight: bold;
-		}
-		.gitment-submit:hover {
-			background-color: #ff4d4d;
-			border-color: #ff4d4d;
-			color: #fff;
-		}
-		.gitment-header {
-			align-items: center;
-			display: flex;
-			justify-content: space-between;
-		}
-		.gitment-header-title {
-			font-size: 2rem;
-			margin-bottom: 0;
-		}
-		.gitment-comment {
-			border-bottom: 1px solid #e5e5e5;
-			margin-bottom: 50px;
-			padding-bottom: 50px;
-		}
-		.gitment-comment:last-child {
-			border-bottom: none;
-			margin-bottom: 0;
-			padding-bottom: 0;
-		}
-		.gitment-comment-avatar {
-			border-radius: 50%;
-			margin-right: 10px;
-			vertical-align: middle;
-		}
-		.gitment-comment-author {
-			font-weight: bold;
-		}
-		.gitment-comment-date {
-			color: #999;
-			font-size: 0.8rem
-		}
-		.gitment-comment-body {
-			margin-top: 10px;
-		}
-		.gitment-comment-body p:first-child {
-			margin-top: 0;
-		}
-		.gitment-comment-reply {
-			color: #999;
-			font-size: 0.8rem;
-			margin-top: 10px;
-			text-decoration: none;
-		}
-		.gitment-comment-reply:hover {
-			color: #ff6b6b;
-		}
-	</style>
 </head>
 <body>
 	<header>
-		<h1>Gitment留言板</h1>
+		<h1>欢迎来到Gitment留言板</h1>
+		<p>在下方留下您的评论吧</p>
 	</header>
 	<main>
-		<!-- Gitment评论系统 -->
-		<div id="comments"></div>
+		<!-- 评论区域 -->
+		<div id="comments-container"></div>
+		<!-- 引入 Gitment 脚本文件 -->
 		<script src="https://unpkg.com/gitment/dist/gitment.browser.js"></script>
 		<script>
+			// 初始化 Gitment 对象
 			var gitment = new Gitment({
-				id: 'https://example.com/page.html',
-				repo: 'https://github.com/ATFfang/Comment.git',
-				oauth: {
-					client_id: 'eca3e301e5857f272dd3',
-					client_secret: '1f34a63b5b0a79b7916cc14223cdfdc16fd4c061',
-				},
+			  owner: 'ATFfang',
+			  repo: 'Comment',
+			  oauth: {
+			    client_id: 'eca3e301e5857f272dd3',
+			    client_secret: '1f34a63b5b0a79b7916cc14223cdfdc16fd4c061',
+			  },
 			});
-			gitment.render('comments');
+
+			// 将 Gitment 对象挂载到页面上指定的评论容器上
+			gitment.render('comments-container');
 		</script>
-		<!-- 发表评论表单 -->
-		<div class="gitment-form">
-			<h2 class="gitment-header-title">发表评论</h2>
-			<form>
-				<div class="mb-3">
-					<label for="gitment-name" class="form-label">称呼</label>
-					<input type="text" class="form-control" id="gitment-name" placeholder="请输入您的称呼">
-				</div>
-				<div class="mb-3">
-					<label for="gitment-email" class="form-label">邮箱</label>
-					<input type="email" class="form-control" id="gitment-email" placeholder="请输入您的邮箱">
-				</div>
-				<div class="mb-3">
-					<label for="gitment-content" class="form-label">评论</label>
-					<textarea class="form-control gitment-editor" id="gitment-content" rows="5" placeholder="请输入您的评论"></textarea>
-				</div>
-				<button type="submit" class="btn btn-github gitment-submit">提交评论</button>
-			</form>
-		</div>
 	</main>
-	<!-- 引入 Bootstrap JS 文件 -->
-	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
